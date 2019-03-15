@@ -75,6 +75,11 @@ class DocumentSelector extends Component<Props & WithDefaultOptions> {
 
   render() {
     const documentOptions = this.getOptions()
+    if (documentOptions.length === 1 && this.props.skipSelectionIfSolo) {
+      const { setDocumentType, nextStep } = this.props
+      setDocumentType('driving_licence');
+      nextStep();
+    }
     const { className } = this.props
     return (
       <div className={classNames(style.wrapper, className)}>
